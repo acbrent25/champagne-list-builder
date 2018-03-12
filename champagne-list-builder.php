@@ -52,7 +52,10 @@ add_filter('manage_edit-clb_subscriber_columns', 'clb_subscriber_column_headers'
 // 1.3
 // hint: registers custom amdmin column data
 add_filter('manage_clb_subscriber_posts_custom_column', 'clb_subscriber_column_data',1,2);
-
+add_action(
+  'admin_head-edit.php',
+  'clb_register_custom_admin_titles'
+);
 
 
 /* !2.1 SHORTCODES */
@@ -159,9 +162,30 @@ function clb_register_custom_admin_titles() {
   add_filter(
     'the_title',
     'clb_custom_admin_titles',
-    99,
+    100,
     2
   );
+}
+
+// 3.2.3
+// hint: handles custom admin title "title" column data for post types without titles
+function clb_custom_admin_titles( $title, $post_id ) {
+   
+  global $post;
+
+  $output = $title;
+ 
+  if( isset($post->post_type) ):
+              switch( $post->post_type ) {
+                      case 'clb_subscriber':
+                            $fname = get_field('clb_fname', $post_id );
+                            $lname = get_field('clb_lname', $post_id );
+                            $output = $fname .' '. $lname;
+                            break;
+              }
+      endif;
+ 
+  return $output;
 }
 
 
