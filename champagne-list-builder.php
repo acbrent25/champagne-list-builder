@@ -146,7 +146,7 @@ function clb_subscriber_column_data( $column, $post_id) {
         break;
 
       case 'email':
-        //get the custom email data
+        //get the custom email data cool
         $email = get_field('clb_email_adress', $post_id );
         $output .= $email;
         break;
