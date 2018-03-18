@@ -5,9 +5,9 @@ jQuery(document).ready(function($){
 	var wpajax_url = document.location.protocol + '//' + document.location.host + '/wp-admin/admin-ajax.php';
 	
 	// email capture action url
-	var email_capture_url = wpajax_url += '?action=slb_save_subscription';
+	var email_capture_url = wpajax_url += '?action=clb_save_subscription';
 	
-	$('form.slb-form').bind('submit',function(){
+	$('form.clb-form').bind('submit',function(){
 		
 		// get the jquery form object
 		$form = $(this);
@@ -15,7 +15,8 @@ jQuery(document).ready(function($){
 		// setup our form data for our ajax post
 		var form_data = $form.serialize();
 		
-		// submit our form data with ajax
+    // submit our form data with ajax test
+    
 		$.ajax({
 			'method':'post',
 			'url':email_capture_url,
