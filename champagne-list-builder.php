@@ -106,7 +106,7 @@ add_action('admin_menu', 'clb_admin_menus');
 
 // 1.8
 // hint: load external files in WordPress admin
-// add_action('admin_enqueue_scripts', 'clb_admin_scripts');
+add_action('admin_enqueue_scripts', 'clb_admin_scripts');
 
 /* !2. SHORTCODES */
 
@@ -307,6 +307,18 @@ function clb_public_scripts() {
 	
 }
 
+
+// 4.3
+// hint: loads external files into wordpress ADMIN
+function clb_admin_scripts() {
+	
+	// register scripts with WordPress's internal library
+	wp_register_script('champagne-list-builder-js-private', plugins_url('/js/private/champagne-list-builder.js',__FILE__), array('jquery'),'',true);
+	
+	// add to que of scripts that get loaded into every admin page
+	wp_enqueue_script('champagne-list-builder-js-private');
+	
+}
 
 
 
