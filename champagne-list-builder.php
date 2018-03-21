@@ -80,6 +80,10 @@ add_filter('manage_clb_list_posts_custom_column','clb_list_column_data',1,2);
 add_action('wp_ajax_nopriv_clb_save_subscription', 'clb_save_subscription'); // regular website visitor
 add_action('wp_ajax_clb_save_subscription', 'clb_save_subscription'); // admin user
 
+// 1.5
+// load external files to public website
+add_action('wp_enqueue_scripts', 'clb_public_scripts');
+
 /* !2. SHORTCODES */
 
 // 2.1
@@ -233,6 +237,18 @@ function clb_list_column_data( $column, $post_id ) {
 
 
 /* !4. EXTERNAL SCRIPTS */
+
+// 4.1
+// hint: loads external files into PUBLIC website
+function clb_public_scripts() {
+	
+	// register scripts with WordPress's internal library
+	wp_register_script('champagne-list-builder-js-public', plugins_url('/js/public/champagne-list-builder.js',__FILE__), array('jquery'),'',true);
+	
+	// add to que of scripts that get loaded into every page
+	wp_enqueue_script('champagne-list-builder-js-public');
+	
+}
 
 
 
