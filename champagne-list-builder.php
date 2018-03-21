@@ -22,6 +22,7 @@ Text Domain: champagne-list-builder
 		1.2 - register custom admin column headers
 		1.3 - register custom admin column data
 		1.4 - register ajax actions
+		1.5 - load external files to public website
 	
 	2. SHORTCODES
 		2.1 - clb_register_shortcodes()
@@ -34,6 +35,8 @@ Text Domain: champagne-list-builder
 		3.4 - clb_list_column_data()
 		
 	4. EXTERNAL SCRIPTS
+		4.1 - Include ACF
+		4.2 - clb_public_scripts()
 		
 	5. ACTIONS
 		5.1 - clb_save_subscription()
@@ -49,6 +52,7 @@ Text Domain: champagne-list-builder
 		6.6 - clb_get_subscriber_data()
 		
 	7. CUSTOM POST TYPES
+		7.1 - subscribers
 	
 	8. ADMIN PAGES
 	
@@ -619,7 +623,7 @@ function clb_get_subscriber_data( $subscriber_id ) {
 
 
 /* !7. CUSTOM POST TYPES */
-
+include_once(plugin_dir_path( __FILE__ ) . 'cpt/clb_subscriber.php');
 
 
 
