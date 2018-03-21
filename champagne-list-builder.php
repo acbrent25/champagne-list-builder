@@ -53,6 +53,7 @@ Text Domain: champagne-list-builder
 		
 	7. CUSTOM POST TYPES
 		7.1 - subscribers
+		7.2 - lists
 	
 	8. ADMIN PAGES
 	
@@ -623,7 +624,13 @@ function clb_get_subscriber_data( $subscriber_id ) {
 
 
 /* !7. CUSTOM POST TYPES */
-include_once(plugin_dir_path( __FILE__ ) . 'cpt/clb_subscriber.php');
+// 7.1
+// subscribers
+include_once( plugin_dir_path( __FILE__ ) . 'cpt/clb_subscriber.php');
+
+//7.2
+// lists
+include_once( plugin_dir_path( __FILE__ ) . 'cpt/clb_list.php');
 
 
 

@@ -1,4 +1,42 @@
 <?php 
+function clb_register_clb_subscriber() {
+
+	/**
+	 * Post Type: Subscribers.
+	 */
+
+	$labels = array(
+		"name" => __( "Subscribers", "udemy" ),
+		"singular_name" => __( "Subscriber", "udemy" ),
+	);
+
+	$args = array(
+		"label" => __( "Subscribers", "udemy" ),
+		"labels" => $labels,
+		"description" => "",
+		"public" => false,
+		"publicly_queryable" => true,
+		"show_ui" => true,
+		"show_in_rest" => false,
+		"rest_base" => "",
+		"has_archive" => false,
+		"show_in_menu" => true,
+		"exclude_from_search" => true,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => false,
+		"rewrite" => array( "slug" => "clb_subscriber", "with_front" => false ),
+		"query_var" => true,
+		"supports" => false,
+	);
+
+	register_post_type( "clb_subscriber", $args );
+
+
+}
+
+add_action( 'init', 'clb_register_clb_subscriber' );
+
 
 if(function_exists("register_field_group"))
 {
