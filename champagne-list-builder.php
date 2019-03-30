@@ -81,6 +81,12 @@ add_filter('manage_edit-clb_list_columns','clb_list_column_headers');
 // 1.3
 // hint: register custom admin column data
 add_filter('manage_clb_subscriber_posts_custom_column','clb_subscriber_column_data',1,2);
+
+add_action(
+	'admin_head-edit.php',
+	'clb_register_custom_admin_titles'
+);
+
 add_filter('manage_clb_list_posts_custom_column','clb_list_column_data',1,2);
 
 // 1.4
@@ -107,6 +113,7 @@ add_action('admin_menu', 'clb_admin_menus');
 // 1.8
 // hint: load external files in WordPress admin
 add_action('admin_enqueue_scripts', 'clb_admin_scripts');
+
 
 /* !2. SHORTCODES */
 
@@ -221,6 +228,38 @@ function clb_subscriber_column_data( $column, $post_id ) {
 	// echo the output
 	echo $output;
 	
+}
+
+// 3.2.2 fix autodraft issue
+// hint: registers special custom admin title columns
+function clb_register_custom_admin_titles(){
+	add_filter(
+		'the_title',
+		'clb_custom_admin_titles',
+		99,
+		2
+	);
+}
+
+// 3.2.3
+// hint: handles custom admin title "title" column data for post types without titles
+function clb_custom_admin_titles( $title, $post_id ) {
+   
+	global $post;
+
+	$output = $title;
+ 
+	if( isset($post->post_type) ):
+							switch( $post->post_type ) {
+											case 'clb_subscriber':
+														$fname = get_field('clb_fname', $post_id );
+														$lname = get_field('clb_lname', $post_id );
+														$output = $fname .' '. $lname;
+														break;
+							}
+			endif;
+ 
+	return $output;
 }
 
 // 3.3
